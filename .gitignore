@@ -7,6 +7,9 @@ tmp
 
 # dependencies
 node_modules
+.angular
+.nx
+.vscode
 
 # IDEs and editors
 /.idea
