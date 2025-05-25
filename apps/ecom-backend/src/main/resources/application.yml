@@ -34,7 +34,7 @@ spring:
         connection:
           provider_disables_autocommit: true
         order_inserts: true
-        default_schema: ecommerce_yt
+        default_schema: ecommerce
     hibernate:
       ddl-auto: validate
       naming:

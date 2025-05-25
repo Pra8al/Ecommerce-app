@@ -1,0 +1,267 @@
+ 651  ng add @fortawesome/angular-fontawesome
+  652  ng add @fortawesome/angular-fontawesome
+  653  ng add @fortawesome/angular-fontawesome@0.14.1
+  654  npx nx serve ecomm-frontend
+  655  nx g @nx/angular:setup-tailwind ecomm-frontend
+  656  npm i -D daisyui@latest
+  657  npm install -D @tailwindcss/typography
+  658   npm audit fix --force\n
+  659  npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+  660  npm i
+  661  npm i --legacy-peer-deps
+  662  npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+  663  npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons --force
+  664  npm i @fortawesome/angular-fontawesome
+  665  npm i @fortawesome/angular-fontawesome --force
+  666  npm i
+  667  7
+  668  npm i
+  669  npm install @types/node@latest\n
+  670  npm i
+  671  npm start
+  672  npx nx serve ecomm-frontend
+  673  npx nx serve ecomm-frontend
+  674  npx nx serve ecomm-frontend
+  675  npm i --legacy-peer-deps
+  676  npx nx serve ecomm-frontend
+  677  npx nx serve ecom-frontend
+  678  nx g @nx/angular:setup-tailwind ecom-frontend
+  679  npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+  680  npm i @fortawesome/angular-fontawesome
+  681  npm install -D @tailwindcss/typography
+  682  npm i -D daisyui@latest
+  683  history -100
+  684  npm i --legacy-peer-deps
+  685  npx nx serve ecom-frontend
+  686  npx nx serve ecom-frontend
+  687  npx nx serve ecom-frontend
+  688  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/layout navbar
+  689  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/layout navbar
+  690  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/layout navbar
+  691  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/layout navbar
+  692  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/layout navbar
+  693  nx g
+  694  nx g @nx/angular:component
+  695  nx g @nx/angular:component
+  696  nx g @nx/angular:component
+  697  nx g @nx/angular:component
+  698  nx g @nx/angular:component apps/ecom-frontend/src/app/layout/footer/footer
+  699  pwd
+  700  cd ..
+  701  ls -lart
+  702  git status
+  703  git add .
+  704  git commit -m "feat: initial ui setup using nx"
+  705  git push
+  706  npm i @nxrocks/nx-spring-boot --save-dev
+  707  nx g @nxrocks/nx-spring-boot:project ecom-backend
+  708  nx g @nxrocks/nx-spring-boot:project ecom-backend
+  709  nx g @nxrocks/nx-spring-boot:project ecom-backend --verbose
+  710  cd ecom
+  711  ls
+  712  ls -lart
+  713  nx g @nxrocks/nx-spring-boot:project ecom-backend --verbose
+  714  node -v\n
+  715  brew install node\n
+  716  nx show projects
+  717  npx nx ecomm-frontend:serve
+  718  nx servce ecomm-frontend
+  719  nx serve ecomm-frontend
+  720  node -v
+  721  node v
+  722  docker
+  723  docker ps
+  724  docker ps PORTS
+  725  nx serve ecom-backend
+  726  clear
+  727  nx serve ecom-backend
+  728  nx serve ecom-backend
+  729  nx serve ecom-backend
+  730  nx serve ecom-frontend
+  731  nx serve ecom-frontend
+  732  pwd
+  733  nx g @nx/angular:component
+  734  nx g @nx/angular:component --directory=apps/ecom-fronted/src/app/layout navbar
+  735  cd apps
+  736  nx g @nx/angular:component --directory=apps/ecom-fronted/src/app/layout navbar
+  737  cd ..
+  738  nx g @nx/angular:component --directory=./apps/ecom-fronted/src/app/layout navbar
+  739  pwd
+  740  ls
+  741  nx g @nx/angular:component --directory=./apps/ecom-frontend/src/app/layout navbar
+  742  nx g @nx/angular:component --directory=./apps/ecom-frontend/src/app/layout footer
+  743  cd IdeaProjects
+  744  ls -lart
+  745  rm -rf DataStructureAlgo
+  746  ls -lart
+  747  git clone https://github.com/Pra8al/DataStructureAlgo.git
+  748  git clone https://github.com/Pra8al/airbnb-clone.git
+  749  cd airbnb-clone
+  750  mkdir frontend
+  751  mkdir backend
+  752  rmdir frontend
+  753  ng new frontned
+  754  ng new frontend
+  755  pwd
+  756  rmdir backend
+  757  pwd
+  758  mv ../../Downloads/backend.zip .
+  759  pwd
+  760  ls
+  761  unzip
+  762  unzip backend.zip
+  763  ls -lart
+  764  rm backend.zip
+  765  ls -lart
+  766  cd ..
+  767  pwd
+  768  rm -rf airbnb-clone
+  769  ls -lart
+  770  git clone https://github.com/Pra8al/ecommerce-app.git
+  771  cd ecommerce-app
+  772  npx create-nx-workspace
+  773  pwd
+  774  rm -rf *
+  775  ls -lart
+  776  npx create-nx-workspace
+  777  npm install @nxrocks/nx-spring-boot --save-dev
+  778  pwd
+  779  ls
+  780  cd ecom
+  781  npm install @nxrocks/nx-spring-boot --save-dev
+  782  cd node_modules
+  783  ls
+  784  cd ..
+  785  pwd
+  786  cd ..
+  787  ls
+  788  cd node_modules
+  789  ls
+  790  cd ..
+  791  pwd
+  792  ls
+  793  rm -rf node_modules
+  794  more package.json
+  795  rm package*
+  796  ls
+  797  cd ecom
+  798  npm install @nxrocks/nx-spring-boot --save-dev
+  799  npm audit
+  800  nx g @nxrocks/nx-spring-boot:project ecom-backend
+  801  nx
+  802  npm nx init
+  803  npx nx init
+  804  nx g @nxrocks/nx-spring-boot:project ecom-backend
+  805  npx nx g @nxrocks/nx-spring-boot:project ecom-backend
+  806  nx
+  807  npx
+  808  npm i @nrwl/workspace
+  809  npx nx g @nxrocks/nx-spring-boot:project ecom-backend
+  810  pwd
+  811  cd ..
+  812  rm rf *
+  813  ls -lart
+  814  rm -rf *
+  815  ls -lart
+  816  cd ..
+  817  rm -rf ecommerce-app
+  818  ls -lart
+  819  npx
+  820  npx version
+  821  npx --version
+  822  node -v
+  823  npm install -g nx@19.6.5\n
+  824  npx create-nx-workspace@19.6.5\n
+  825  ls
+  826  cd ecommerce-app
+  827  ls
+  828  more package.json
+  829  npm install --save-dev @nxrocks/nx-spring-boot@10.2.6\n
+  830  nx g @nxrocks/nx-spring-boot:new spring-boot-app\n
+  831  nx g @nxrocks/nx-spring-boot:new spring-boot-app\n
+  832  ls -lart
+  833  cd apps
+  834  ls
+  835  mv spring-boot-app ecomm-backend
+  836  ls -lart
+  837  pwd
+  838  cd ..
+  839  ls -lart
+  840  npm install --save-dev @nrwl/workspace
+  841  nx graph
+  842  cd apps
+  843  mv ecomm-backend spring-boot-app
+  844  cd ..
+  845  ls
+  846  nx g @nrwl/workspace:move --project spring-boot-app ecomm-backend\n
+  847  cd apps
+  848  nx g @nrwl/workspace:move --project spring-boot-app ecomm-backend\n
+  849  ls -lart
+  850  cd ..
+  851  ls -lart
+  852  nx g @nrwl/workspace:move --project ecomm-backend apps/ecomm-backend\n
+  853  pwd
+  854  cd ..
+  855  rm -rf ecommerce-app
+  856  rm -rf ecommerce-app
+  857  ls -lart
+  858  npx create-nx-workspace@19.6.5\n
+  859  pwd
+  860  cd ..
+  861  cd WebstormProjects
+  862  ls -lart
+  863  npx create-nx-workspace@19.6.5\n
+  864  ls -lart
+  865  rm -rf Ecommerce-app
+  866  ls -lart
+  867  npx create-nx-workspace@latest\n
+  868  npm install --save-dev @nrwl/angular\n
+  869  pwd
+  870  ls
+  871  ls -lart
+  872  rm -rf node_modules
+  873  ls -lart
+  874  cd Ecommerce-app
+  875  npm install --save-dev @nrwl/angular@latest\n
+  876  npm install --save-dev @nxrocks/nx-spring-boot@latest\n
+  877  ls
+  878  cd apps
+  879  ls
+  880  cd ..
+  881  nx g @nxrocks/nx-spring-boot:new ecom-backend\n
+  882  pwd
+  883  cd ..
+  884  rm -rf Ecommerce-app
+  885  npx create-nx-workspace
+  886  cd Ecommerce-app
+  887  ls
+  888  ^[[200~npm install --save-dev @nxrocks/nx-spring-boot@10.2.6
+  889  npm install --save-dev @nxrocks/nx-spring-boot@10.2.6\n
+  890  nx g @nxrocks/nx-spring-boot:new ecom-backend\n
+  891  cd ..
+  892  ls
+  893  rm -rf Ecommerce-app
+  894  npx create-nx-workspace@19.6.5\n
+  895  cd Ecommerce-app
+  896  npm install --save-dev @nrwl/angular@15.6.5
+  897  npm install --save-dev @nxrocks/nx-spring-boot@10.2.6\n
+  898  npm uninstall --save-dev @nxrocks/nx-spring-boot@10.2.6\n
+  899  npm uninstall @nxrocks/nx-spring-boot@10.2.6\n
+  900  more package.json
+  901  npm install --save-dev @nxrocks/nx-spring-boot@10.2.6\n
+  902  nx g @nxrocks/nx-spring-boot:new ecom-backend\n
+  903  nx
+  904  nx g @nx/angular:setup-tailwind ecom-frontend
+  905  npm i -D daisyui@latest
+  906  npm install -D @tailwindcss/typography
+  907  npm install @fortawesome/free-solid-svg-icons npm install @fortawesome/free-regular-svg-icons npm install @fortawesome/free-brands-svg-icons
+  908  npm install @fortawesome/angular-fontawesome
+  909  npm install @fortawesome/angular-fontawesome@0.15.0
+  910  git status
+  911  git add .
+  912  git commit -m "feat: new problems"
+  913  git push
+  914  git status
+  915  git add .
+  916  git commit -m "feat: new problems"
+  917  git push
