@@ -1,4 +1,4 @@
-package com.prabal.ecom.shared.authentication.infrastructure;
+package com.prabal.ecom.shared.authentication.infrastructure.primary;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

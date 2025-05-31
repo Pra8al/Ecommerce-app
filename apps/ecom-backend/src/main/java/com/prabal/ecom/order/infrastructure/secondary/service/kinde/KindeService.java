@@ -17,13 +17,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class KindeService {
 
   private static final Logger log = LoggerFactory.getLogger(KindeService.class);
-
   @Value("${application.kinde.api}")
   private String apiUrl;
 
@@ -41,36 +41,34 @@ public class KindeService {
     .baseUrl(apiUrl)
     .build();
 
-
   private Optional<String> getToken() {
     try {
       ResponseEntity<KindeAccessToken> accessToken = restClient.post()
-        .uri(URI.create("/oauth/token"))
+        .uri(apiUrl + "/oauth/token")
         .body("grant_type=client_credentials&audience=" + URLEncoder.encode(audience, StandardCharsets.UTF_8))
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         .header("Authorization",
-          "Basic" + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8)))
+          "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8)))
         .header("Content-Type", ContentType.APPLICATION_FORM_URLENCODED.getMimeType())
         .retrieve()
         .toEntity(KindeAccessToken.class);
       return Optional.of(accessToken.getBody().accessToken());
     } catch (Exception e) {
-      // Log the error or handle it as needed
-      log.error("Error fetching Kinde access token: " + e.getMessage());
+      log.error("Error while getting token", e);
       return Optional.empty();
     }
   }
 
   public Map<String, Object> getUserInfo(String userId) {
     String token = getToken().orElseThrow(() -> new IllegalStateException("No token found"));
-    var typeRef = new ParameterizedTypeReference<Map<String, Object>>() {
-    };
+
+    var typeRef = new ParameterizedTypeReference<Map<String, Object>>() {};
 
     ResponseEntity<Map<String, Object>> authorization = restClient.get()
       .uri(apiUrl + "/api/v1/user?id={id}", userId)
-      .accept(MediaType.APPLICATION_JSON)
       .header("Authorization", "Bearer " + token)
+      .accept(MediaType.APPLICATION_JSON)
       .retrieve()
       .toEntity(typeRef);
 

@@ -64,11 +64,11 @@ public class User {
       userBuilder.userEmail(new UserEmail((String) attributes.get("preferred_email")));
     }
 
-    if (attributes.containsKey("family_name")) {
-      userBuilder.userLastname(new UserLastname((String) attributes.get("family_name")));
+    if (attributes.containsKey("first_name")) {
+      userBuilder.userLastname(new UserLastname((String) attributes.get("first_name")));
     }
-    if (attributes.containsKey("given_name")) {
-      userBuilder.userFirstname(new UserFirstname((String) attributes.get("given_name")));
+    if (attributes.containsKey("last_name")) {
+      userBuilder.userFirstname(new UserFirstname((String) attributes.get("last_name")));
     }
 
     if (attributes.containsKey("picture")) {

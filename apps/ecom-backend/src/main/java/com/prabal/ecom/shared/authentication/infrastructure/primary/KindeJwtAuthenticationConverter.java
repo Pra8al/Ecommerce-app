@@ -1,4 +1,4 @@
-package com.prabal.ecom.shared.authentication.infrastructure;
+package com.prabal.ecom.shared.authentication.infrastructure.primary;
 
 import com.prabal.ecom.shared.authentication.application.AuthenticatedUser;
 import org.springframework.core.convert.converter.Converter;
@@ -17,7 +17,8 @@ public class KindeJwtAuthenticationConverter implements Converter<Jwt, AbstractA
   @Override
   public AbstractAuthenticationToken convert(@NonNull Jwt source) {
     return new JwtAuthenticationToken(source,
-      Stream.concat(new JwtGrantedAuthoritiesConverter().convert(source).stream(), extractResourceRoles(source).stream()).collect(Collectors.toSet()));
+      Stream.concat(new JwtGrantedAuthoritiesConverter().convert(source).stream(),
+        extractResourceRoles(source).stream()).collect(Collectors.toSet()));
   }
 
   private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
