@@ -26,7 +26,7 @@ public class ProductCRUD {
   public PublicId remove(PublicId id) {
     int deleted = productRepository.delete(id);
     if (deleted != 1) {
-      throw new EntityNotFoundException(String.format("No category deleted with id: %s", id));
+      throw new EntityNotFoundException(String.format("No product deleted with id: %s", id));
     }
     return id;
   }

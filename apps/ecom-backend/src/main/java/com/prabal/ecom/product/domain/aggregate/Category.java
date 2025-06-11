@@ -21,7 +21,7 @@ public class Category {
   }
 
   private void assertMandatoryFields(CategoryName categoryName){
-    Assert.notNull("name", name);
+    Assert.notNull("name", categoryName);
   }
 
   public void initDefaultFields(){

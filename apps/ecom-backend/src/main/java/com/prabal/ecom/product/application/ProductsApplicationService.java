@@ -33,6 +33,7 @@ public class ProductsApplicationService {
     return productCRUD.findAll(pageable);
   }
 
+  @Transactional
   public PublicId deleteProduct(PublicId publicId){
     return productCRUD.remove(publicId);
   }

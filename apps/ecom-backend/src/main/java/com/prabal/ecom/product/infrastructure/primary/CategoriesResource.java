@@ -41,12 +41,12 @@ public class CategoriesResource {
 
   @PreAuthorize("hasAnyRole('" + ROLE_ADMIN + "')")
   @DeleteMapping
-  public ResponseEntity<UUID> delete(@RequestParam UUID uuid) {
+  public ResponseEntity<UUID> delete(UUID publicId) {
     try {
-      PublicId publicId = productsApplicationService.deleteCategory(new PublicId(uuid));
-      return ResponseEntity.ok(publicId.value());
+      PublicId deletedPublicId = productsApplicationService.deleteCategory(new PublicId(publicId));
+      return ResponseEntity.ok(deletedPublicId.value());
     } catch (EntityNotFoundException enfe) {
-      log.error("Could not delete category with id {}", uuid, enfe);
+      log.error("Could not delete category with id {}", publicId, enfe);
       ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, enfe.getMessage());
       return ResponseEntity.of(problemDetail).build();
     }
