@@ -2,11 +2,14 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { Oauth2Service } from '../../auth/oauth2.service';
+import { RouterLink } from '@angular/router';
+import { ClickOutside } from 'ngxtension/click-outside';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ecom-navbar',
   standalone: true,
-  imports: [CommonModule, FaIconComponent],
+  imports: [CommonModule, FaIconComponent, RouterLink, ClickOutside],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -36,5 +39,9 @@ export class NavbarComponent {
     if (bodyElement) {
       bodyElement.blur();
     }
+  }
+
+  closeMenu(adminMenu: HTMLDetailsElement) {
+    adminMenu.removeAttribute('open');
   }
 }
