@@ -18,6 +18,7 @@ public class SecurityConfiguration {
     http.authorizeHttpRequests(authorize ->
         authorize
           .requestMatchers("/api/categories").permitAll()
+          .requestMatchers("/api/products-shop/**").permitAll()
           .requestMatchers("/api/**").authenticated())
       .csrf(AbstractHttpConfigurer::disable)
       .oauth2ResourceServer(
