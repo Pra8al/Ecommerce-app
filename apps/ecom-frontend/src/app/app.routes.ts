@@ -4,8 +4,13 @@ import { CreateCategoryComponent } from './admin/category/create-category/create
 import { roleCheckGuard } from './auth/role-check.guard';
 import { AdminProductsComponent } from './admin/product/admin-products/admin-products.component';
 import { CreateProductComponent } from './admin/product/create-product/create-product.component';
+import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Route[] = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'admin/categories/list',
     component: AdminCategoriesComponent,
