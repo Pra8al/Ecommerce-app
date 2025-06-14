@@ -9,7 +9,7 @@ export interface Pagination {
 export interface Pageable {
   pageNumber: number;
   pageSize: number;
-  sort: Sort
+  sort: Sort;
   offset: number;
   paged: boolean;
   unpaged: boolean;
@@ -35,13 +35,12 @@ export interface Page<T> {
   empty: boolean;
 }
 
-
 export const createPaginationOption = (req: Pagination): HttpParams => {
   let params = new HttpParams();
-  params = params.append("page", req.page).append("size", req.size);
+  params = params.append('page', req.page).append('size', req.size);
 
-  req.sort.forEach(value => {
-    params = params.append("sort", value);
+  req.sort.forEach((value) => {
+    params = params.append('sort', value);
   });
 
   return params;

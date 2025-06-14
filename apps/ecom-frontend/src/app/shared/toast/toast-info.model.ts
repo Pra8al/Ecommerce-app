@@ -1,6 +1,6 @@
 export type AlertType = 'SUCCESS' | 'ERROR';
 
 export interface ToastInfo {
-  body: string,
-  type: AlertType
+  body: string;
+  type: AlertType;
 }

@@ -1,7 +1,7 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-5">
   @if (featuredProductQuery.isSuccess()) {
     @for (product of featuredProductQuery.data().content; track product.publicId) {
-      <ecom-product-card [product]="product"></ecom-product-card>
+      <ecom-product-card [product]="product" class="space-x-5 space-y-5"></ecom-product-card>
     }
   }
 </div>
