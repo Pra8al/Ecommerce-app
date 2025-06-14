@@ -1,5 +1,6 @@
 package com.prabal.ecom.product.domain.service;
 
+import com.prabal.ecom.product.domain.aggregate.FilterQuery;
 import com.prabal.ecom.product.domain.aggregate.Product;
 import com.prabal.ecom.product.domain.repository.ProductRepository;
 import com.prabal.ecom.product.domain.vo.PublicId;
@@ -30,5 +31,9 @@ public class ProductShop {
     } else {
       throw new EntityNotFoundException(String.format("No product found with publicId %s", productPublicId));
     }
+  }
+
+  public Page<Product> filter(Pageable pageable, FilterQuery filterQuery) {
+    return productRepository.findByCategoryAndSize(pageable, filterQuery);
   }
 }

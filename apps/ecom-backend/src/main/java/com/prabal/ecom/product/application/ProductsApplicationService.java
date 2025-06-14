@@ -1,6 +1,7 @@
 package com.prabal.ecom.product.application;
 
 import com.prabal.ecom.product.domain.aggregate.Category;
+import com.prabal.ecom.product.domain.aggregate.FilterQuery;
 import com.prabal.ecom.product.domain.aggregate.Product;
 import com.prabal.ecom.product.domain.repository.CategoryRepository;
 import com.prabal.ecom.product.domain.repository.ProductRepository;
@@ -71,6 +72,11 @@ public class ProductsApplicationService {
   @Transactional(readOnly = true)
   public Page<Product> findRelatedProducts(Pageable pageable, PublicId productPublicId) {
     return productShop.findRelated(pageable, productPublicId);
+  }
+
+  @Transactional
+  public Page<Product> filter(Pageable pageable, FilterQuery filterQuery) {
+    return productShop.filter(pageable, filterQuery);
   }
 
 
