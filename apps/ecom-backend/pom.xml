@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.prabal</groupId>
 	<artifactId>ecom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>ecom-backend</name>
 	<description>Ecommerce Backend Spring Boot</description>
 	<url/>
@@ -95,6 +95,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <image>
+            <name>prabal/ecom-backend:${project.version}</name>
+            <env>
+              <BP_JAVA_VERSION>${java.version}</BP_JAVA_VERSION>
+              <BP_JVM_CDS_ENABLED>true</BP_JVM_CDS_ENABLED>
+            </env>
+          </image>
+        </configuration>
 			</plugin>
 		</plugins>
 	</build>

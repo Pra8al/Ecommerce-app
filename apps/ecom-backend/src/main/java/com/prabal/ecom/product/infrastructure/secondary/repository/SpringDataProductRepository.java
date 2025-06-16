@@ -1,5 +1,6 @@
 package com.prabal.ecom.product.infrastructure.secondary.repository;
 
+import com.prabal.ecom.order.domain.order.vo.ProductPublicId;
 import com.prabal.ecom.product.domain.aggregate.FilterQuery;
 import com.prabal.ecom.product.domain.aggregate.Picture;
 import com.prabal.ecom.product.domain.aggregate.Product;
@@ -95,6 +96,11 @@ public class SpringDataProductRepository implements ProductRepository {
     List<UUID> uuids = publicIds.stream().map(PublicId::value).toList();
     return jpaProductRepository.findAllByPublicIdIn(uuids)
       .stream().map(ProductEntity::to).toList();
+  }
+
+  @Override
+  public void updateQuantity(ProductPublicId productPublicId, long quantity) {
+    jpaProductRepository.updateQuantity(productPublicId.value(), quantity);
   }
 
 

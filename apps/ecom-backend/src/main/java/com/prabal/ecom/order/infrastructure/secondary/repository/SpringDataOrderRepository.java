@@ -1,9 +1,14 @@
 package com.prabal.ecom.order.infrastructure.secondary.repository;
 
 import com.prabal.ecom.order.domain.order.aggregate.Order;
+import com.prabal.ecom.order.domain.order.aggregate.StripeSessionInformation;
 import com.prabal.ecom.order.domain.order.repository.OrderRepository;
+import com.prabal.ecom.order.domain.order.vo.OrderStatus;
 import com.prabal.ecom.order.infrastructure.secondary.entity.OrderEntity;
+import com.prabal.ecom.product.domain.vo.PublicId;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class SpringDataOrderRepository implements OrderRepository {
@@ -25,5 +30,16 @@ public class SpringDataOrderRepository implements OrderRepository {
       .forEach(orderedProductEntity -> orderedProductEntity.getId().setOrder(savedOrderEntity));
 
     jpaOrderedProductRepository.saveAll(savedOrderEntity.getOrderedProducts());
+  }
+
+  @Override
+  public void updateStatusByPublicId(OrderStatus status, PublicId orderPublicId) {
+    jpaOrderRepository.updateStatusByPublicId(status, orderPublicId.value());
+  }
+
+  @Override
+  public Optional<Order> findByStripeSessionId(StripeSessionInformation stripeSessionInformation) {
+    return jpaOrderRepository.findByStripeSessionId(stripeSessionInformation.stripeSessionId().value())
+      .map(OrderEntity::to);
   }
 }

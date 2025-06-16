@@ -1,5 +1,6 @@
 package com.prabal.ecom.product.application;
 
+import com.prabal.ecom.order.domain.order.aggregate.OrderProductQuantity;
 import com.prabal.ecom.product.domain.aggregate.Category;
 import com.prabal.ecom.product.domain.aggregate.FilterQuery;
 import com.prabal.ecom.product.domain.aggregate.Product;
@@ -8,6 +9,7 @@ import com.prabal.ecom.product.domain.repository.ProductRepository;
 import com.prabal.ecom.product.domain.service.CategoryCRUD;
 import com.prabal.ecom.product.domain.service.ProductCRUD;
 import com.prabal.ecom.product.domain.service.ProductShop;
+import com.prabal.ecom.product.domain.service.ProductUpdater;
 import com.prabal.ecom.product.domain.vo.PublicId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,11 +25,13 @@ public class ProductsApplicationService {
   private final ProductCRUD productCRUD;
   private final CategoryCRUD categoryCRUD;
   private final ProductShop productShop;
+  private final ProductUpdater productUpdater;
 
   public ProductsApplicationService(ProductRepository productRepository, CategoryRepository categoryRepository) {
     this.productCRUD = new ProductCRUD(productRepository);
     this.categoryCRUD = new CategoryCRUD(categoryRepository);
     this.productShop = new ProductShop(productRepository);
+    this.productUpdater = new ProductUpdater(productRepository);
   }
 
   @Transactional
@@ -83,6 +87,11 @@ public class ProductsApplicationService {
   @Transactional(readOnly = true)
   public List<Product> getProductByPublicIdsIn(List<PublicId> publicIds){
     return productCRUD.findAllByPublicIdIn(publicIds);
+  }
+
+  @Transactional
+  public void updateProductQuantity(List<OrderProductQuantity> orderProductQuantities){
+      productUpdater.updateProductQuantity(orderProductQuantities);
   }
 
 }

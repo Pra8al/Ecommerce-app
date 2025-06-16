@@ -28,10 +28,10 @@ public interface JpaProductRepository  extends JpaRepository<ProductEntity, Long
 
   List<ProductEntity> findAllByPublicIdIn(List<UUID> publicIds);
 
-//  @Modifying
-//  @Query("UPDATE ProductEntity  product " +
-//    "SET product.nbInStock = product.nbInStock - :quantity " +
-//    "WHERE product.publicId = :productPublicId")
-//  void updateQuantity(UUID productPublicId, long quantity);
+  @Modifying
+  @Query("UPDATE ProductEntity  product " +
+    "SET product.numberInStock = product.numberInStock - :quantity " +
+    "WHERE product.publicId = :productPublicId")
+  void updateQuantity(UUID productPublicId, long quantity);
 
 }

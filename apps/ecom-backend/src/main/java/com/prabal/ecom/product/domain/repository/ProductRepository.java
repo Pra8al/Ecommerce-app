@@ -1,5 +1,6 @@
 package com.prabal.ecom.product.domain.repository;
 
+import com.prabal.ecom.order.domain.order.vo.ProductPublicId;
 import com.prabal.ecom.product.domain.aggregate.FilterQuery;
 import com.prabal.ecom.product.domain.aggregate.Product;
 import com.prabal.ecom.product.domain.vo.PublicId;
@@ -28,4 +29,6 @@ public interface ProductRepository {
   Page<Product> findByCategoryAndSize(Pageable pageable, FilterQuery filterQuery);
 
   List<Product> findByPublicIds(List<PublicId> publicIds);
+
+  void updateQuantity(ProductPublicId productPublicId, long quantity);
 }
