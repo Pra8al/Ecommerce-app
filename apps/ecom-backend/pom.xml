@@ -78,14 +78,15 @@
       <scope>provided</scope> <!-- Jilt is not needed at runtime -->
     </dependency>
     <dependency>
-      <groupId>com.stripe</groupId>
-      <artifactId>stripe-java</artifactId>
-      <version>26.11.0</version>
-    </dependency>
-    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.11.0</version>
+      <version>2.13.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+    <dependency>
+      <groupId>com.stripe</groupId>
+      <artifactId>stripe-java</artifactId>
+      <version>29.2.0</version>
     </dependency>
 	</dependencies>
 
