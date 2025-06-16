@@ -7,6 +7,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public class CategoryCRUD {
 
   private final CategoryRepository categoryRepository;
@@ -30,5 +32,9 @@ public class CategoryCRUD {
       throw new EntityNotFoundException(String.format("No category deleted with id %s", categoryId));
     }
     return categoryId;
+  }
+
+  public Optional<Category> findFeaturedCategory(String product) {
+    return categoryRepository.findFeaturedCategory(product);
   }
 }

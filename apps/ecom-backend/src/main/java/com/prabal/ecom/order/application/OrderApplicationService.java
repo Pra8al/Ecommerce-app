@@ -4,6 +4,7 @@ import com.prabal.ecom.order.domain.order.aggregate.*;
 import com.prabal.ecom.order.domain.order.repository.OrderRepository;
 import com.prabal.ecom.order.domain.order.service.CartReader;
 import com.prabal.ecom.order.domain.order.service.OrderCreator;
+import com.prabal.ecom.order.domain.order.service.OrderReader;
 import com.prabal.ecom.order.domain.order.service.OrderUpdater;
 import com.prabal.ecom.order.domain.order.vo.StripeSessionId;
 import com.prabal.ecom.order.domain.user.aggregate.User;
@@ -11,6 +12,8 @@ import com.prabal.ecom.order.infrastructure.secondary.service.stripe.StripeServi
 import com.prabal.ecom.product.application.ProductsApplicationService;
 import com.prabal.ecom.product.domain.aggregate.Product;
 import com.prabal.ecom.product.domain.vo.PublicId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +32,8 @@ public class OrderApplicationService {
 
   private final OrderUpdater orderUpdater;
 
+  private final OrderReader orderReader;
+
   public OrderApplicationService(ProductsApplicationService productsApplicationService,
                                  UsersApplicationService usersApplicationService,
                                  OrderRepository orderRepository,
@@ -38,6 +43,7 @@ public class OrderApplicationService {
     this.orderUpdater = new OrderUpdater(orderRepository);
     this.orderCreator = new OrderCreator(orderRepository, stripeService);
     this.cartReader = new CartReader();
+    this.orderReader = new OrderReader(orderRepository);
   }
 
   @Transactional(readOnly = true)
@@ -61,6 +67,17 @@ public class OrderApplicationService {
     List<OrderProductQuantity> orderProductQuantities = this.orderUpdater.computeQuantity(orderedProducts);
     this.productsApplicationService.updateProductQuantity(orderProductQuantities);
     this.usersApplicationService.updateAddress(stripeSessionInformation.userAddress());
+  }
+
+  @Transactional(readOnly = true)
+  public Page<Order> findOrdersForConnectedUser(Pageable pageable) {
+    User authenticatedUser = usersApplicationService.getAuthenticatedUser();
+    return orderReader.findAllByUserPublicId(authenticatedUser.getUserPublicId(), pageable);
+  }
+
+  @Transactional(readOnly = true)
+  public Page<Order> findOrdersForAdmin(Pageable pageable) {
+    return orderReader.findAll(pageable);
   }
 
 }

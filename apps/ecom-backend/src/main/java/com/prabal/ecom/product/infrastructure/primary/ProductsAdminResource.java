@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
 
+import static com.prabal.ecom.product.infrastructure.primary.CategoriesResource.ROLE_ADMIN;
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductsAdminResource {
@@ -33,8 +35,6 @@ public class ProductsAdminResource {
   private static final Logger log = LoggerFactory.getLogger(ProductsAdminResource.class);
 
   private final ProductsApplicationService productsApplicationService;
-
-  public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 

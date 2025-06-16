@@ -4,6 +4,9 @@ logging:
     org.hibernate.SQL: INFO
     com.prabal.ecom: INFO
 
+product:
+  featured-category: Laptops
+
 spring:
   application:
     name: Ecommerce Backend

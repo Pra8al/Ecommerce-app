@@ -85,13 +85,17 @@ public class ProductsApplicationService {
   }
 
   @Transactional(readOnly = true)
-  public List<Product> getProductByPublicIdsIn(List<PublicId> publicIds){
+  public List<Product> getProductByPublicIdsIn(List<PublicId> publicIds) {
     return productCRUD.findAllByPublicIdIn(publicIds);
   }
 
   @Transactional
-  public void updateProductQuantity(List<OrderProductQuantity> orderProductQuantities){
-      productUpdater.updateProductQuantity(orderProductQuantities);
+  public void updateProductQuantity(List<OrderProductQuantity> orderProductQuantities) {
+    productUpdater.updateProductQuantity(orderProductQuantities);
   }
 
+  public Category getFeaturedProductCategory(String product) {
+    Optional<Category> categoryOpt = categoryCRUD.findFeaturedCategory(product);
+    return categoryOpt.orElseThrow();
+  }
 }

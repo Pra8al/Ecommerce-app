@@ -6,8 +6,8 @@ import com.prabal.ecom.order.domain.order.vo.OrderStatus;
 import com.prabal.ecom.order.domain.user.vo.UserPublicId;
 import com.prabal.ecom.product.domain.vo.PublicId;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.Optional;
 
 public interface OrderRepository {
@@ -18,7 +18,7 @@ public interface OrderRepository {
 
   Optional<Order> findByStripeSessionId(StripeSessionInformation stripeSessionInformation);
 
-//  Page<Order> findAllByUserPublicId(UserPublicId userPublicId, Pageable pageable);
-//
-//  Page<Order> findAll(Pageable pageable);
+  Page<Order> findAllByUserPublicId(UserPublicId userPublicId, Pageable pageable);
+
+  Page<Order> findAll(Pageable pageable);
 }

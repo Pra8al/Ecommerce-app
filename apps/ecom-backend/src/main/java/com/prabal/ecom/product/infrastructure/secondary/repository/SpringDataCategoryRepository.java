@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class SpringDataCategoryRepository implements CategoryRepository {
 
@@ -32,5 +34,11 @@ public class SpringDataCategoryRepository implements CategoryRepository {
     CategoryEntity categoryToSave = CategoryEntity.from(categoryToCreate);
     CategoryEntity categorySaved = jpaCategoryRepository.save(categoryToSave);
     return CategoryEntity.to(categorySaved);
+  }
+
+  @Override
+  public Optional<Category> findFeaturedCategory(String product) {
+    Optional<CategoryEntity> featuredCategoryFromProduct = jpaCategoryRepository.findFeaturedCategoryFromProduct(product);
+    return featuredCategoryFromProduct.map(CategoryEntity::to);
   }
 }

@@ -1,11 +1,13 @@
 package com.prabal.ecom.product.infrastructure.primary;
 
 import com.prabal.ecom.product.application.ProductsApplicationService;
+import com.prabal.ecom.product.domain.aggregate.Category;
 import com.prabal.ecom.product.domain.aggregate.FilterQueryBuilder;
 import com.prabal.ecom.product.domain.aggregate.Product;
 import com.prabal.ecom.product.domain.vo.ProductSize;
 import com.prabal.ecom.product.domain.vo.PublicId;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,9 @@ public class ProductShopResource {
   public ProductShopResource(ProductsApplicationService productsApplicationService) {
     this.productsApplicationService = productsApplicationService;
   }
+
+  @Value("${product.featured-category}")
+  String featuredCategory;
 
   @GetMapping("/featured")
   public ResponseEntity<Page<RestProduct>> getAllFeatured(Pageable pageable) {
@@ -65,9 +70,16 @@ public class ProductShopResource {
 
   @GetMapping("/filter")
   public ResponseEntity<Page<RestProduct>> filter(Pageable pageable,
-                                                  @RequestParam("categoryId") UUID categoryId,
+                                                  @RequestParam(value = "categoryId", required = false) UUID categoryId,
                                                   @RequestParam(value = "productSizes", required = false) List<ProductSize> sizes) {
-    FilterQueryBuilder filterQueryBuilder = FilterQueryBuilder.filterQuery().categoryId(new PublicId(categoryId));
+    FilterQueryBuilder filterQueryBuilder = FilterQueryBuilder.filterQuery();
+
+    if (categoryId == null) {
+      Category category = this.productsApplicationService.getFeaturedProductCategory(featuredCategory);
+      filterQueryBuilder.categoryId(new PublicId(category.getPublicId().value()));
+    } else {
+      filterQueryBuilder.categoryId(new PublicId(categoryId));
+    }
     if (sizes != null) {
       filterQueryBuilder.sizes(sizes);
     }
