@@ -33,9 +33,9 @@
       </div>
       <button class="btn btn-primary mt-5 w-full lg:w-64"
               [disabled]="productQuery.data().numberInStock <= 0"
-      >
-        <fa-icon class="me-1" [icon]="['fas', 'shopping-cart']"></fa-icon>
-        Add to cart
+              (click)="addToCart(productQuery.data()!)">
+        <fa-icon class="me-1" [icon]="['fas', iconAddToCart]"></fa-icon>
+        {{ labelAddToCart }}
       </button>
     </div>
   </div>

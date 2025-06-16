@@ -20,7 +20,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent {
-  category = injectQueryParams('category');
+  category = injectQueryParams('category') || (() => 'default-category');
   size = injectQueryParams('size');
   sort = injectQueryParams('sort');
   productService = inject(UserProductService);
@@ -59,9 +59,11 @@ export class ProductsComponent {
       ),
   }));
 
-  onFilterChange(filterProducts: ProductFilter) {
+  onFilterChange(filterProducts: ProductFilter): void {
+    console.log(this.filterProducts);
     filterProducts.category = this.category();
     this.filterProducts = filterProducts;
+    console.log(this.filterProducts);
     this.pageRequest.sort = filterProducts.sort;
     this.router.navigate(['/products'], {
       queryParams: {
@@ -82,12 +84,14 @@ export class ProductsComponent {
 
   private handleParametersChange() {
     if (this.category()) {
+
       if (this.lastCategory != this.category() && this.lastCategory !== '') {
         this.filterProducts = {
           category: this.category(),
           size: this.size() ? this.size()! : '',
           sort: [this.sort() ? this.sort()! : ''],
         };
+        console.log(this.filterProducts);
         this.filterProductsQuery.refetch();
       }
     }

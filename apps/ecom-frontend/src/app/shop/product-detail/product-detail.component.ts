@@ -6,9 +6,11 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../shared/toast/toast.service';
 import { Pagination } from '../../shared/model/request.model';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { lastValueFrom } from 'rxjs';
+import { interval, lastValueFrom, take } from 'rxjs';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { CartService } from '../cart.service';
+import { Product } from '../../admin/model/product.model';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -24,8 +26,12 @@ export class ProductDetailComponent {
   productService = inject(UserProductService);
   router = inject(Router);
   toastService = inject(ToastService);
+  cartService = inject(CartService);
 
   lastPublicId = '';
+
+  labelAddToCart = 'Add to cart';
+  iconAddToCart = 'shopping-cart';
 
   pageRequest: Pagination = {
     page: 0,
@@ -82,5 +88,18 @@ export class ProductDetailComponent {
         'ERROR'
       );
     }
+  }
+
+  addToCart(productToAdd: Product): void {
+    this.cartService.addToCart(productToAdd.publicId, 'add');
+    this.labelAddToCart = 'Added to cart';
+    this.iconAddToCart = 'check';
+
+    interval(3000)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.labelAddToCart = 'Add to cart';
+        this.iconAddToCart = 'shopping-cart';
+      });
   }
 }

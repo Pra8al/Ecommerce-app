@@ -40,6 +40,11 @@
                    (click)="closeMenu(adminMenu)"
                    (clickOutside)="closeMenu(adminMenu)">Products</a>
               </li>
+              <li>
+                <a routerLink="admin/orders/list"
+                   (click)="closeMenu(adminMenu)"
+                   (clickOutside)="closeMenu(adminMenu)">Orders</a>
+              </li>
             </ul>
           </details>
         </li>
@@ -61,7 +66,7 @@
       @if (this.isConnected()) {
         <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
           <li>
-            <button class="link" (click)="closeDropDownMenu()" routerLink="/users/orders">My Orders</button>
+            <button class="link" (click)="closeDropDownMenu()" routerLink="/user/orders">My Orders</button>
           </li>
           <li>
             <button class="link" (click)="logout()">Logout</button>
@@ -77,7 +82,12 @@
     </div>
     <div class="dropdown dropdown-end me-2" routerLink="/cart">
       <div tabindex="0" role="button">
-        <fa-icon [icon]="['fas', 'cart-shopping']" class="menu-icon"></fa-icon>
+        <div class="indicator">
+          @if (numberOfItemsInCart > 0) {
+            <span class="indicator-item badge badge-primary">{{ numberOfItemsInCart }}</span>
+          }
+          <fa-icon [icon]="['fas', 'cart-shopping']" class="menu-icon"></fa-icon>
+        </div>
       </div>
     </div>
   </div>
