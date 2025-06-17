@@ -149,13 +149,7 @@ KINDE_ISSUER_URL=your_kinde_issuer_url
 ---
 
 ## Screenshots
-Include screenshots to showcase the application. Suggested images:
-1. **Homepage**: Add a screenshot of the homepage.
-2. **Admin Dashboard**: Show the admin orders table.
-3. **Order Details**: Display an order detail view.
-4. **Responsive Design**: Showcase the app on mobile and desktop.
 
-```markdown
 ### Homepage
 ![Homepage](./docs/images/homepage.png)
 
@@ -167,6 +161,6 @@ Include screenshots to showcase the application. Suggested images:
 
 ### Responsive Design
 ![Responsive Design](./docs/images/responsive-design.jpg)
-```
+
 
 ---
