@@ -27,19 +27,38 @@ import java.util.UUID;
 
 import static com.prabal.ecom.product.infrastructure.primary.CategoriesResource.ROLE_ADMIN;
 
+/**
+ * REST controller for managing orders in the e-commerce application.
+ * Handles cart details, payment initialization, Stripe webhook events,
+ * and order retrieval for users and admins.
+ */
 @RestController
 @RequestMapping("/api/orders")
 public class OrderResource {
 
   private final OrderApplicationService orderApplicationService;
 
+  /**
+   * Stripe webhook secret, injected from application properties.
+   */
   @Value("${application.stripe.webhook-secret}")
   private String webhookSecret;
 
+  /**
+   * Constructor for OrderResource.
+   *
+   * @param orderApplicationService the service handling order operations
+   */
   public OrderResource(OrderApplicationService orderApplicationService) {
     this.orderApplicationService = orderApplicationService;
   }
 
+  /**
+   * Retrieves detailed cart information for the given product IDs.
+   *
+   * @param productIds list of product UUIDs
+   * @return cart details wrapped in a ResponseEntity
+   */
   @GetMapping("/get-cart-details")
   public ResponseEntity<RestDetailCartResponse> getDetails(@RequestParam List<UUID> productIds) {
     List<DetailCartItemRequest> cartItemRequests = productIds.stream()
@@ -51,6 +70,12 @@ public class OrderResource {
     return ResponseEntity.ok(RestDetailCartResponse.from(cartDetails));
   }
 
+  /**
+   * Initializes a payment session for the provided cart items.
+   *
+   * @param items list of cart item requests
+   * @return Stripe session information or bad request if payment fails
+   */
   @PostMapping("/init-payment")
   public ResponseEntity<RestStripeSession> initPayment(@RequestBody List<RestCartItemRequest> items) {
     List<DetailCartItemRequest> detailCartItemRequests = RestCartItemRequest.to(items);
@@ -63,6 +88,13 @@ public class OrderResource {
     }
   }
 
+  /**
+   * Handles Stripe webhook events for order processing.
+   *
+   * @param paymentEvent    the raw event payload from Stripe
+   * @param stripeSignature the Stripe signature header
+   * @return HTTP 200 if processed, 400 if signature verification fails
+   */
   @PostMapping("/webhook")
   public ResponseEntity<Void> webhookStripe(@RequestBody String paymentEvent,
                                             @RequestHeader("Stripe-Signature") String stripeSignature) {
@@ -74,15 +106,18 @@ public class OrderResource {
     }
 
     Optional<StripeObject> rawStripeObjectOpt = event.getDataObjectDeserializer().getObject();
-    switch (event.getType()) {
-      case "checkout.session.completed":
-        handleCheckoutSessionCompleted(rawStripeObjectOpt.orElseThrow());
-        break;
-
+    if (event.getType().equals("checkout.session.completed")) {
+      handleCheckoutSessionCompleted(rawStripeObjectOpt.orElseThrow());
     }
     return ResponseEntity.ok().build();
   }
 
+  /**
+   * Handles the completion of a Stripe checkout session.
+   * Updates the order with user address and session information.
+   *
+   * @param rawStripeObject the Stripe session object
+   */
   private void handleCheckoutSessionCompleted(StripeObject rawStripeObject) {
     if (rawStripeObject instanceof Session session) {
       Address address = session.getCustomerDetails().getAddress();
@@ -107,6 +142,12 @@ public class OrderResource {
     }
   }
 
+  /**
+   * Retrieves paginated orders for the currently connected user.
+   *
+   * @param pageable pagination information
+   * @return paginated list of user orders
+   */
   @GetMapping("/user")
   public ResponseEntity<Page<RestOrderRead>> getOrdersForConnectedUser(Pageable pageable) {
     Page<Order> orders = orderApplicationService.findOrdersForConnectedUser(pageable);
@@ -118,6 +159,13 @@ public class OrderResource {
     return ResponseEntity.ok(restOrderReads);
   }
 
+  /**
+   * Retrieves paginated orders for admin users.
+   * Requires admin role.
+   *
+   * @param pageable pagination information
+   * @return paginated list of admin order views
+   */
   @GetMapping("/admin")
   @PreAuthorize("hasAnyRole('" + ROLE_ADMIN + "')")
   public ResponseEntity<Page<RestOrderReadAdmin>> getOrdersForAdmin(Pageable pageable) {
