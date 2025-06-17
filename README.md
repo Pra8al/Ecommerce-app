@@ -157,16 +157,16 @@ Include screenshots to showcase the application. Suggested images:
 
 ```markdown
 ### Homepage
-![Homepage](docs/images/homepage.png)
+![Homepage](./docs/images/homepage.png)
 
 ### Admin Dashboard
-![Admin Dashboard](docs/images/admin-dashboard.png)
+![Admin Dashboard](./docs/images/admin-dashboard.png)
 
 ### Order Details
-![Order Details](docs/images/order-details.png)
+![Order Details](./docs/images/order-details.png)
 
 ### Responsive Design
-![Responsive Design](docs/images/responsive-design.jpg)
+![Responsive Design](./docs/images/responsive-design.jpg)
 ```
 
 ---
