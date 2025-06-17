@@ -1,82 +1,172 @@
-# EcommerceApp
+# EcommerceAppClone
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+✨ **EcommerceApp** is a modern e-commerce platform built using Angular,and Spring Boot. It leverages the Nx monorepo structure for efficient development and scalability.
+Libraries include TailwindCSS, DaisyUI, Kinde, Stripe.
+---
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Table of Contents
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Getting Started](#getting-started)
+4. [Project Structure](#project-structure)
+5. [Development](#development)
+6. [Production Build](#production-build)
+7. [Testing](#testing)
+8. [Screenshots](#screenshots)
 
-## Finish your remote caching setup
+---
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/IpKwOvl6hQ)
+## Features
+- **Admin Dashboard**: Manage orders, products, and categories of products.
+- **User-Friendly Interface**: Responsive design for seamless shopping.
+- **Order Management**: View and track orders with detailed information.
+- **Stripe Integration**: Secure payment processing. NOTE - As this is a clone, don't enter original card details.
+- **Kinde Integration**: Authentication and authorization using Kinde for secure user management.
+- **Security Configuration**: Backend and frontend are secured with role-based access control and token-based authentication.
+- **User Order History**: Users can view their past orders with detailed information.
+- **Nx Monorepo**: Efficient workspace management.
+---
 
+## Tech Stack
+- **Frontend**: Angular, TypeScript, TailwindCSS
+- **Backend**: Spring Boot, Java
+- **Build Tools**: Maven, Nx
+- **Database**: PostgresSQL, Liquibase
+- **Payment Gateway**: Stripe
+- **Auth**: Kinde
+---
 
-## Run tasks
+## Getting Started
 
-To run the dev server for your app, use:
+### Prerequisites
+- Node.js (v20+)
+- npm (v10+)
+- Java (JDK 17+)
+- Angular (v18+)
 
-```sh
-npx nx serve ecom-frontend
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Pra8al/Ecommerce-app.git
+   cd Ecommerce-app
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npx nx serve ecom-frontend
+   ```
+
+4. Run the backend:
+   ```sh
+   mvn spring-boot:run
+   or
+   npx nx serve ecom-backend
+   ```
+
+---
+
+## Project Structure
+- **apps/ecom-frontend**: Angular frontend application.
+- **apps/ecom-backend**: Spring Boot backend application.
+
+---
+
+## Development
+
+- **Backend**: The backend follows the **Hexagonal Architecture** for better separation of concerns and scalability.
+- **Frontend**: The frontend uses **TanStack Query** for efficient state management and data fetching.
+
+### Setting up PostgresSQL with Docker
+To run the backend, you need to set up a PostgreSQL database using Docker. Below is an example `docker-compose.yml` file:
+
+```yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: ecommerce_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: ecommerce_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
 ```
 
-To create a production bundle:
-
+Run the following command to start the container:
 ```sh
-npx nx build ecom-frontend
+docker-compose up -d
 ```
 
-To see all available targets to run for a project, run:
+### Setting up the `.env` File
+The `.env` file is required to configure environment variables for the backend. Below are examples:
 
-```sh
-npx nx show project ecom-frontend
-```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
+```env
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/ecommerce_db
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=yourpassword
+SPRING_JPA_HIBERNATE_DDL_AUTO=update
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_PUBLIC_KEY=your_stripe_public_key
+KINDE_CLIENT_ID=your_kinde_client_id
+KINDE_CLIENT_SECRET=your_kinde_client_secret
+KINDE_ISSUER_URL=your_kinde_issuer_url
 ```
 
-To generate a new library, use:
+### Additional Commands
+- To create a new Angular component (provided example) using Nx:
+  ```sh
+  nx g @nx/angular:component --directory=apps/ecom-frontend/src/app/user user-orders --project ecom-frontend
+  ```
+- To create a new Angular service (provided example) using Nx:
+  ```sh
+  nx g @nx/angular:service shared/service/order --project ecom-frontend
+  ```
 
-```sh
-npx nx g @nx/angular:lib mylib
+---
+
+## Testing
+- Run unit tests:
+  ```sh
+  npx nx test ecom-frontend
+  ```
+- Run end-to-end tests:
+  ```sh
+  npx nx e2e ecom-frontend-e2e
+  ```
+
+---
+
+## Screenshots
+Include screenshots to showcase the application. Suggested images:
+1. **Homepage**: Add a screenshot of the homepage.
+2. **Admin Dashboard**: Show the admin orders table.
+3. **Order Details**: Display an order detail view.
+4. **Responsive Design**: Showcase the app on mobile and desktop.
+
+```markdown
+### Homepage
+![Homepage](docs/images/homepage.png)
+
+### Admin Dashboard
+![Admin Dashboard](docs/images/admin-dashboard.png)
+
+### Order Details
+![Order Details](docs/images/order-details.png)
+
+### Responsive Design
+![Responsive Design](docs/images/responsive-design.jpg)
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
